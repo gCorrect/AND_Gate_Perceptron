@@ -4,7 +4,7 @@ from statistics import variance
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from scipy import stats
-
+# ------------------------------
 def k(n):
     k= 1+(3.322*math.log(n,10))
     print("k=", k)
@@ -343,13 +343,14 @@ def Sp(S1 , n1, S2, n2 ):
     Sp = math.sqrt(S_var_p)
     print("Sp =", Sp)
     return Sp
-# Ergasia Computational Intelligence
+# Ergasia Computational Intelligence--------------------------------
 def weights(dim):
     # weights = np.random.rand(dim)
     weights = [1,-1,1.5]
     print("Weights: \n",weights)
     print("---------------------------") # ALT -> Weights[0] = 0.5 #Weights[1] = 0.5 #Weights[2] = 0.5
     return weights
+
 
 
 # functions---------------------------------------------------------

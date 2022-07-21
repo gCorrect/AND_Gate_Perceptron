@@ -20,24 +20,24 @@ def loadPlotdata(tablename):
     c1.execute(query)
     result_c1 = c1.fetchall()
     # print
-    print("Result for c1: ")
-    print(result_c1)
+    # print("Result for c1: ")
+    # print(result_c1)
     # cursor, execution, result -> C2
     c2 = mydb.cursor()
     query = "SELECT * FROM "+tablename+" WHERE EO=1"
     c2.execute(query)
-    print("Result for c2: ")
     result_c2 = c2.fetchall()
     # print
-    print(result_c2)
-    # x1[],y1[]        
+    # print("Result for c2: ")
+    # print(result_c2)
+    # # x1[],y1[]        
     for row in result_c1:
-        x1.append(row[1])
-        y1.append(row[2])
+        x1.append(row[0])
+        y1.append(row[1])
     # x2[],y2[]        
     for row in result_c2:
-        x2.append(row[1])
-        y2.append(row[2])
+        x2.append(row[0])
+        y2.append(row[1])
     return x1,y1,x2,y2
 def loaddata(tablename):
     # database connection
@@ -53,8 +53,8 @@ def loaddata(tablename):
     cursor.execute(query)
     result = cursor.fetchall()
     # print
-    print("Result for all Data: \n")
-    print(result)
-    print("---------------------------")
+    # print("Result for all Data: \n")
+    # print(result)
+    # print("---------------------------")
     return result
     
