@@ -1,0 +1,8 @@
+LOAD DATA INFILE 'C:/Users/nanas/Desktop/Nikos2/Lessons/Ypol_nohm/Ergasia/data/nand.csv' 
+INTO TABLE nand
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+------------------------------------
+update lg_and set bias = 1;
