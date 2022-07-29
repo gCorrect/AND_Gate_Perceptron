@@ -1,5 +1,7 @@
 import math
+from turtle import update
 import numpy as np
+import pandas as pd
 from statistics import variance
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
@@ -345,12 +347,139 @@ def Sp(S1 , n1, S2, n2 ):
     return Sp
 # Ergasia Computational Intelligence--------------------------------
 def weights(dim):
-    # weights = np.random.rand(dim)
-    weights = [1,-1,1.5]
+    weights = np.random.rand(dim)
+    # weights = [1,-1,1.5]
     print("Weights: \n",weights)
-    print("---------------------------") # ALT -> Weights[0] = 0.5 #Weights[1] = 0.5 #Weights[2] = 0.5
+    print("---------------------------") 
     return weights
+def initTrainingVariables(training_set):
+    x1 = [training_set[i][0][0] for i in range(len(training_set))]
+    x2 = [training_set[i][0][1] for i in range(len(training_set))]
+    y = [training_set[i][1] for i in range(len(training_set))]
+    print("x1 \n" , x1)
+    print("x2 \n" , x2)
+    print("y \n" , y)
+    return x1,x2,y
+def step_function(x):
+    if x<0:
+        return 0
+    else:
+        return 1
+def updateWeights(x,w,n,error,d):
+    for index, value in enumerate(x):
+        w[index] += n * error * value # This 'eta' may stands for estimated time of arrival. LOL
+    d += n*error
+    # print("-------------------Start Update Weights")
+    # print("w \n",w)
+    # print("d \n",d)
+    # print("-------------------End Update Weights")
+   
+    return w,d,#wList    
+def train(training_set,w):
+    # print("training_set: \n",training_set)
+    def initVariables():
+        errors = [] 
+        n = .2
+        epoch = 30
+        b = 0
+        iterations = 0
+        wList = []
+        indexWList = -1
+        e = 0
+        return errors, n, epoch, b, iterations, wList, indexWList, e 
+    errors, n, epoch, b, iterations, wList, indexWList, e  = initVariables()
+    # Training
+    for i in range(epoch):
+        iterations=0
+        for x, y in training_set:
+            u = sum(x*w) + b
+            error = y[0] - step_function(u) 
+            iterations+=1                        
+            errors.append(error) 
+            if (error): 
+                w,b = updateWeights(x,w,n,error,b)  
+                weights = w
+                wb = np.append(weights,b) 
+                wList.append(wb)
+                indexWList+=1
+        if (indexWList>1): # Calculate e
+            # print("wList: ", wList)
+            e = wList[indexWList-1] - wList[indexWList-2]
+            print("e: ",e)
+            print ("differnce distance",e[0]**2 + e[1]**2 + e[2]**2)
+    print("InexWList: ", indexWList)
+    for wd in wList:
+        print("wd: ", wd )
+    def printTrainValues():
+        print("---------------------------") 
+        print(" Training Function values: \n")
+        print("training_set: \n",training_set)
+        print("iterations: ", iterations)
+        print("u :", u)
+        print("step_function :", step_function(u))
+        print("eo[0] :", eo)
+        print("error :", error)
+        print("w \n",w)
+        print("d \n",d)
+        print("---------------------------")
+    # printTrainValues() 
+    return w,b        
+# 3D---------------------------------------------------------------------------------
+def train3D(training_set,w):
+    def initVariables():
+        errors = [] 
+        n = .1
+        epoch = 1015
+        d = 0
+        iterations = 0
+        return errors, n, epoch, d, iterations
+    errors, n, epoch, d, iterations = initVariables()
+    # Training
+    for i in range(epoch):
+        for x, eo in training_set:
+            u = sum(x*w) + d
+            error = eo[0] - step_function(u) 
+            iterations+=1                        
+            if (error): 
+                w,d=    updateWeights(x,w,n,error,d)
+    def print3DTrainValues():
+        print("---------------------------") 
+        print(" Training Function values: \n")
+        print("training_set: \n",training_set)
+        print("iterations: ", iterations)
+        print("u :", u)
+        print("step_function :", step_function(u))
+        print("eo[0] :", eo)
+        print("error :", error)
+        print("w \n",w)
+        print("d \n",d)
+        print("---------------------------")
+    print3DTrainValues() 
+    return w,d        
 
+    # x1,x2,x3,y = initTrainingVariables(training_set)
+
+# class Perceptron: #https://gist.github.com/vgoklani/1271153/fc04bb0b79f6abc20cba65eacb4e2e85563c3359
+#     def response(x,w):
+#         return  
+#     def train():
+#         """
+# 		Every vector in data must have three elements, the third element (x[2]) must be the label
+# 		"""
+#         learned = False
+#         iteration = 0
+#         while not learned:
+#             globalError = 0.0
+#             for x in data:
+#                r = self.response(x)    
+#                if x[2] != r:
+#                    iterError = x[2] - r
+#                    self.updateWeights(x,iterError)
+#                    globalError += abs(iterError)
+#                iteration += 1
+#                if globalError == 0.0 or iteration >= 100:
+#                    print ('iterations'),iteration
+#                    learned = True
 
 
 # functions---------------------------------------------------------
