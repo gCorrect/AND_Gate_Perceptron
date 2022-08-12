@@ -1,7 +1,6 @@
-# Import libraries
-from mpl_toolkits import mplot3d
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 from libraries.train import weights, train3D
 from libraries.loaddata import load3DPlotData, load3DTupleData
 from libraries.plot import *

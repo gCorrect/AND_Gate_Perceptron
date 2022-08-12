@@ -1,7 +1,5 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import mysql.connector
-# 2D
+# 2D---------------------------------
 def loadPlotData(tablename):
     # database connection
     mydb = mysql.connector.connect(
@@ -20,17 +18,13 @@ def loadPlotData(tablename):
     query = "SELECT * FROM "+tablename+" WHERE EO=0"
     c1.execute(query)
     result_c1 = c1.fetchall()
-    # print
-    # print("Result for c1: ")
-    # print(result_c1)
+    # print("Result for c1: \n",result_c1)
     # cursor, execution, result -> C2
     c2 = mydb.cursor()
     query = "SELECT * FROM "+tablename+" WHERE EO=1"
     c2.execute(query)
     result_c2 = c2.fetchall()
-    # print
-    # print("Result for c2: ")
-    # print(result_c2)
+    # print("Result for c2: \n",result_c2)
     # # x1[],y1[]        
     for row in result_c1:
         x1.append(row[0])
@@ -120,17 +114,13 @@ def load3DPlotData(tablename):
     query = "SELECT x1,x2,x3 FROM "+tablename+" WHERE EO=0"
     c1.execute(query)
     result_c1 = c1.fetchall()
-    # print
-    # print("Result for c1: ")
-    # print(result_c1)
+    # print("Result for c1: \n",result_c1)
     # cursor, execution, result -> C2
     c2 = mydb.cursor()
     query = "SELECT x1,x2,x3 FROM "+tablename+" WHERE EO=1"
     c2.execute(query)
     result_c2 = c2.fetchall()
-    # print
-    # print("Result for c2: ")
-    # print(result_c2)
+    # print("Result for c2: \n",result_c2)
     # # x1[],y1[]        
     for row in result_c1:
         x1.append(row[0])
@@ -158,11 +148,6 @@ def load3DTupleData(tablename):
     query = "SELECT EO FROM "+tablename
     cursor.execute(query)
     resultEO = cursor.fetchall()
-    print("---------------------------")
-
-    # print("Result for EO: \n")
-    # print(resultEO)
-    # print(type(resultEO))
-
+    # print("---------------------------\n","Result for EO: \n", resultEO,"\n type: ", type(resultEO))    
     alldata= list(zip(result,resultEO))
     return alldata

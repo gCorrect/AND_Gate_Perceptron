@@ -4,8 +4,8 @@ from libraries.plot import plotTrainedData, plotdata,plotDecisionBoundary,plt
 print("-----------------------------------------------------------------------------------")
 # variables
 w = weights(2)
-tablename= "lg_and"
-#Plot before training
+tablename= "dataset2d"
+#Plot (before training)
 plotTrainedData(tablename, w=w)
 # Training
 w, b = train(loadTupleData(tablename=tablename), w=w)
