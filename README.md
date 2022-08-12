@@ -6,9 +6,9 @@
       - Create a new database and name it perceptron
       
       - after you have choosen the percetron database -> push import button
-      - From file to import -> choose file ( perceptron.sql) -> Import
+      - From file to import -> choose file ( perceptron.sql ) -> import
  
- Now your database should be ready for use.
+ Now your database should be ready to use.
  
  In order to run the code: 
    - From the terminal cd to the project path where Perceptron2D.py and Perceptron3D.py are placed  
