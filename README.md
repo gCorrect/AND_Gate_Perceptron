@@ -11,10 +11,10 @@
  Now your database should be ready for use.
  
  Run the code: 
-   - From the terminal cd to the project path where Perceptron2D.py and Perceptron3D.py are placed
-   - Type:
+   - From the terminal cd to the project path where Perceptron2D.py and Perceptron3D.py are placed__
+   Type:
    
-   - python Perceptron2D.py
+   - python Perceptron2D.py__
      or
    - python Perceptron3D.py
    
