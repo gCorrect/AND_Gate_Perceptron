@@ -5,8 +5,8 @@ def loadPlotData(tablename):
     mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="mypass",
-    database="test"
+    password="",
+    database="perceptron"
     )
     # variables of data
     x1 = []
@@ -39,8 +39,8 @@ def loaddata(tablename):
     mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="mypass",
-    database="test"
+    password="",
+    database="perceptron"
     )
     # cursor, execution, result -> C1
     cursor = mydb.cursor()
@@ -56,8 +56,8 @@ def loadTupleData(tablename):
     mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="mypass",
-    database="test"
+    password="",
+    database="perceptron"
     )
     # cursor, execution, result -> C1
     cursor = mydb.cursor()
@@ -80,8 +80,8 @@ def loaddataPerCategory(tablename):
     mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="mypass",
-    database="test"
+    password="",
+    database="perceptron"
     )
     # cursor, execution, result -> C1
     cursor = mydb.cursor()
@@ -99,8 +99,8 @@ def load3DPlotData(tablename):
     mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="mypass",
-    database="test"
+    password="",
+    database="perceptron"
     )
     # variables of data
     x1 = []
@@ -137,8 +137,8 @@ def load3DTupleData(tablename):
     mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="mypass",
-    database="test"
+    password="",
+    database="perceptron"
     )
     # cursor, execution, result -> C1
     cursor = mydb.cursor()
