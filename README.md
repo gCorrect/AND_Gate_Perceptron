@@ -1,7 +1,7 @@
 ﻿# Perceptron algorithm for 2 and 3 dimension problems
  I make use of MySQL, specifally phpMyAdmin to munipulate data. So in order to run the code after download:
     
-   1. - In the data file there is a perceptron.sql file. 
+   1. - In the data folder there is a perceptron.sql file. 
    2. - From phpMyAdmin panel:
       - Create a new database and name it perceptron
       
