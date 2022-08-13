@@ -9,8 +9,7 @@
   In your browser url type address : <br/> <br/>
   localhost/phpmyadmin/ <br/> <br/>
   This action while open the phpMyAdmin panel <br/> <br/>
-  ![Screenshot (7)](https://user-images.githubusercontent.com/109686747/184481670-4be06363-0d42-47cd-a2b6-1286711357b1.png)
-
+  ![Screenshot (7)](https://user-images.githubusercontent.com/109686747/184489989-8f09840c-0198-4f15-95ac-1279c07f02c3.png)
 
    Inside the project there is a data folder and inside that folder the <u>perceptron.sql</u> file. This file creates some tables containig all the data_set needed for the perceptron training.
    - Step 3
