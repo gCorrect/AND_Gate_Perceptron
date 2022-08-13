@@ -3,12 +3,12 @@
 
  It is very easy to load data from the server.<br> 
  - Step 1 <br/>
- After XAMPP installation. Start the apache server and MySQL database. 
+ After XAMPP installation. Start the apache server and MySQL database. <br/> 
  ![Screenshot (6)](https://user-images.githubusercontent.com/109686747/184480651-c7da150f-5cab-40de-b3bc-d40f29f689da.png)
 - Step 2 <br/>
-  In your browser url type address : <br/>
-  localhost/phpmyadmin/ <br/>
-  This action while open the phpMyAdmin panel
+  In your browser url type address : <br/> <br/>
+  localhost/phpmyadmin/ <br/> <br/>
+  This action while open the phpMyAdmin panel <br/>
   ![Screenshot (7)](https://user-images.githubusercontent.com/109686747/184481670-4be06363-0d42-47cd-a2b6-1286711357b1.png)
 
 
