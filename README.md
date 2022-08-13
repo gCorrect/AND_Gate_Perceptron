@@ -12,7 +12,7 @@
   ![Screenshot (7)](https://user-images.githubusercontent.com/109686747/184481670-4be06363-0d42-47cd-a2b6-1286711357b1.png)
 
 
-   Inside the project there is a data folder and inside that folder the <u>perceptron.sql</> file. This file creates some tables containig all the data_set needed for the perceptron training.
+   Inside the project there is a data folder and inside that folder the <u>perceptron.sql</u> file. This file creates some tables containig all the data_set needed for the perceptron training.
    - Step 3
    - From phpMyAdmin panel:
       - Create a new database and name it perceptron
