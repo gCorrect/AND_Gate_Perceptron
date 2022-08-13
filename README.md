@@ -2,17 +2,17 @@
  I make use of MySQL, specifically phpMyAdmin to munipulate data. So after you have downloaded the project in order to run the code you shall have installed a server that supports MySQL and phpMyAdmin like XAMPP, MAMP etc. I personally prefer XAMPP as i find it more convinient to use.
 
  It is very easy to load data from the server.<br> 
- - Step 1
+ - Step 1 <br/>
  After XAMPP installation. Start the apache server and MySQL database. 
  ![Screenshot (6)](https://user-images.githubusercontent.com/109686747/184480651-c7da150f-5cab-40de-b3bc-d40f29f689da.png)
-- Step 2
-  In your browser url type address :
-  localhost/phpmyadmin/
+- Step 2 <br/>
+  In your browser url type address : <br/>
+  localhost/phpmyadmin/ <br/>
   This action while open the phpMyAdmin panel
   ![Screenshot (7)](https://user-images.githubusercontent.com/109686747/184481670-4be06363-0d42-47cd-a2b6-1286711357b1.png)
 
 
-   Inside the project there is a data folder and inside that folder the perceptron.sql file. This file creates some tables containig all the data_set needed for the perceptron training.
+   Inside the project there is a data folder and inside that folder the <u>perceptron.sql</> file. This file creates some tables containig all the data_set needed for the perceptron training.
    - Step 3
    - From phpMyAdmin panel:
       - Create a new database and name it perceptron
