@@ -8,14 +8,14 @@
 - Step 2 <br/>
   In your browser url type address : <br/> <br/>
   localhost/phpmyadmin/ <br/> <br/>
-  This action while open the phpMyAdmin panel <br/> <br/>
+  This action while open the phpMyAdmin panel. <br/> <br/>
   ![Screenshot (7)](https://user-images.githubusercontent.com/109686747/184489989-8f09840c-0198-4f15-95ac-1279c07f02c3.png)
 
-   Inside the project there is a data folder and inside that folder the <u>perceptron.sql</u> file. This file creates some tables containig all the data_set needed for the perceptron training.
+   Inside the project there is a data folder and inside that folder the <u>perceptron.sql</u> file. This file creates some tables containing all the data_set needed for the perceptron training.
    - Step 3
    - From phpMyAdmin panel:
       - Create a new database and name it perceptron
-      - after you have choosen the percetron database -> push import button
+      - Choose the percetron database -> push import button
       - From file to import -> choose file ( perceptron.sql ) -> import
  
  Now your database should be ready to use.
