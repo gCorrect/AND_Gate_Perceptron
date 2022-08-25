@@ -1,12 +1,10 @@
 import math
-from turtle import update
 import numpy as np
-import pandas as pd
 from statistics import variance
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from scipy import stats
-# ------------------------------
+# chapter2 // Descrictive Statistics-------------
 def k(n):
     k= 1+(3.322*math.log(n,10))
     print("k=", k)
@@ -104,7 +102,7 @@ def freqOfBins(sample, n, bins, range):
     mulxifi = mul2Arrayes(xi,fi)
     meanxifi = sum(mulxifi)/n
     xi2fi = mul3Arrayes(xi,xi,fi)
-    variance =( 1/(n-1) ) *( np.sum(xi2fi) - (n*meanxifi*meanxifi) )
+    variance =( 1/(n-1) ) *( np.sum(xi2fi) - (n*meanxifi*meanxifi) ) #2.10
     # v2
     v2 =( 1/(n-1) ) *( np.sum(mul2Arrayes(mul2Arrayes((xi - meanxifi),(xi - meanxifi)), fi)))   #2.9
 
@@ -132,19 +130,15 @@ def meanSimple(sample,n):
     for value in sample:
         sum= sum + value
     meanSimple= sum/n
-    print("\nMeanSimple: ")
-    print("---------------------------------------")
-    print("---------------------------------------")
-    print("\nmeanSimple=",meanSimple)
+    # print("\nMeanSimple: ")
+    # print("---------------------------------------")
+    # print("---------------------------------------")
+    # print("\nmeanSimple=",meanSimple)
     return meanSimple
 def medianBins(sample,n, d, bins, srange):
     cumFreq, lowLimit, binSize, extraPoints = stats.cumfreq(sample, numbins = bins, defaultreallimits= srange)
 
     fi,edges =np.histogram(sample,bins=bins, range= srange)
-    print("fi",fi)
-    print("edges",edges)
-
-    print("cumFreq",cumFreq)
     for i in range(len(cumFreq)):
         if (cumFreq[i] > n/4):
     # Li =edges[i]
@@ -163,6 +157,10 @@ def medianBins(sample,n, d, bins, srange):
     print("\nmedianBins: ")
     print("---------------------------------------")
     print("---------------------------------------")
+    print("fi",fi)
+    print("edges",edges)
+    print("cumFreq",cumFreq)
+    
     print("\nF25%= ", F25)
     print("\nmedianBins= ",median)
     print("\nF75%= ", F75)
@@ -286,202 +284,115 @@ def figureFreqs(sample, bins, range, base):
     histRelCumFreq.set_title(' Relative Cumulative Histogram')
     histRelCumFreq.set_xlim([x.min(), x.max()])
     histRelCumFreq.plot(polPoints, cumFreq/len(sample))# polygon
-    # plt.show()
-#Probabilites // kef3----------
-def P(value, n):
+    plt.show()
+# chapter3 // Elementary Probability Theory----------
+def P(value, n): # Probability Simple
     p = value/n
     return p
-def Pun(p1, p2, p1inter2):
-    pun= p1 + p2 - p1inter2
-    return pun
-def Pinter(p1,p2):
+def Pinter(p1,p2):  # Probability Intersection
     pinter = p1/p2
     return pinter
-def Pcond(p1,p2):
+def Pun(p1, p2, p1inter2): # Probablity Union
+    pun= p1 + p2 - p1inter2
+    return pun
+def Pcond(p1,p2): # Probability Conditional 
     pcond = p1/p2
     return pcond
-def Pind(p1,p2):
+def Pind(p1,p2): # Probablity of 2 independent sets
     pind=p1*p2
     return pind
 def isIndependent(p1, p2,p1inter2):
-    return p1inter2 == p1* p2
-#Probabilites // kef4----------
-def fact(n):  
+    return p1inter2 == p1 * p2
+# chapter4 // Random Variables - Probability Distributions----------
+def fact(n):  # factorial
     return 1 if (n==1 or n==0) else n * fact(n - 1); 
-def possCombs(n,r): #page 67
+def Pcomb(n,r): # Combinatorial Probablity - (3.7), page 67
     return fact(n)/( fact(r) * fact(n-r) )
 def Pbinomial(n, x, p, q):
-    return possCombs(n,x) * pow(p,x) * pow(q,n-x) 
+    return Pcomb(n,x) * pow(p,x) * pow(q,n-x) 
 def Ppoisson (x, l):
     return ( math.exp(-l) * pow(l,x) )/ fact(x)
-# kef5--------------------------
-def std_m(std, n):
-    return std/math.sqrt(n) 
-# kef6--------------------------
+# chapter5 // Sampling Distibutions--------------------------
+def std_m(std, n): # Standard deviation of mean value
+    std_m = std/math.sqrt(n)
+    # print("std_m= ",std_m)
+    return std_m
+# chapter6 // Statistical conclusion validity--------------------------
+def print_stat_values(mean,variance,std,n,sem):
+    print("\nstatistical values :")
+    print("meax = ",mean) 
+    print("var= ", variance)
+    print("std= ",std)
+    print("n= ", n)  
+    print("sem = ", sem)
+    print("var_m= ", sem * sem )
 def confidenceInterval(q, df, mean, std):
-    # q=1-a/2 
     std_mean = std_m(std, df+1)
     t_a2_df = stats.t.ppf(q=(1-q)/2+q,df=df)
-    print("t_a2_df= ", t_a2_df) #<<<--------------
+    # print("t_a2_df= ", t_a2_df) 
     l = mean - t_a2_df * std_mean
     u = mean + t_a2_df * std_mean
-    confidenceLevel = [l,u]
+    confidenceLevel = np.array([l,u])
+    np.set_printoptions(precision=3)
     print("Confidence Interval (t) of ", q," = ", confidenceLevel)
 def confidenceIntervalNorm(q, df, mean, std):
     std_mean = std_m(std,df+1)
     z_a2_df = stats.norm.ppf(q=(1-q)/2+q)
-    print("z_a2_df= ", z_a2_df) #<<<--------------
+    print("z_a2_df=%.3f " % z_a2_df) 
     l = mean - z_a2_df * std_mean
     u = mean + z_a2_df * std_mean
-    confidenceLevel = [l,u]
+    confidenceLevel = np.array([l,u])
+    np.set_printoptions(precision=3)
     print("Confidence Interval (normal) of ",q," = ", confidenceLevel)
 def t(mean, m0, std, n):
     t = ( mean-m0 ) / ( std / math.sqrt(n) )
-    print("t= ", t)
+    print("t=%.3f" % t)
     return ( mean-m0 ) / ( std / math.sqrt(n) )
+def hypothesis( a, mean, m0, std,  n):
+    t_value = t(mean, m0, std, n)
+
+    if ( mean-m0 > 0 ):
+        t_crit = stats.t.ppf( (1-a), n-1 ) 
+        print("t_crit=%.3f" % t_crit)
+
+        if t_value < t_crit :
+            print("H0 is approved")
+        else:
+            print("Ha is approved")
+    else:
+        t_crit = stats.t.ppf( (a), n-1 ) 
+        print("t_crit=%.3f" % t_crit)
+
+        if t_value > t_crit :
+            print("H0 is approved")
+        else:
+            print("Ha is approved")
+def hypothesis_norm( a, mean, m0, std,  n):
+    z_value = t(mean, m0, std, n)
+
+    if ( mean-m0 > 0 ):
+        z_crit = stats.norm.ppf( (1-a) ) 
+        print("z_crit=%.3f" % (z_crit))
+
+        if z_value < z_crit :
+            print("H0 is approved")
+        else:
+            print("Ha is approved")
+    else:
+        z_crit = stats.t.ppf( (a), n-1 ) 
+        print("z_crit=%.3f" % (z_crit))
+
+        if z_value > z_crit :
+            print("H0 is approved")
+        else:
+            print("Ha is approved")
+
 def Sp(S1 , n1, S2, n2 ):
     S_var_p = ( (n1-1)* pow(S1,2) + (n2-1)* pow(S2,2) ) / (n1+n2-2)
     print("S^2p = ", S_var_p)
     Sp = math.sqrt(S_var_p)
     print("Sp =", Sp)
     return Sp
-# Ergasia Computational Intelligence--------------------------------
-def weights(dim):
-    weights = np.random.rand(dim)
-    # weights = [1,-1,1.5]
-    print("Weights: \n",weights)
-    print("---------------------------") 
-    return weights
-def initTrainingVariables(training_set):
-    x1 = [training_set[i][0][0] for i in range(len(training_set))]
-    x2 = [training_set[i][0][1] for i in range(len(training_set))]
-    y = [training_set[i][1] for i in range(len(training_set))]
-    print("x1 \n" , x1)
-    print("x2 \n" , x2)
-    print("y \n" , y)
-    return x1,x2,y
-def step_function(x):
-    if x<0:
-        return 0
-    else:
-        return 1
-def updateWeights(x,w,n,error,d):
-    for index, value in enumerate(x):
-        w[index] += n * error * value # This 'eta' may stands for estimated time of arrival. LOL
-    d += n*error
-    # print("-------------------Start Update Weights")
-    # print("w \n",w)
-    # print("d \n",d)
-    # print("-------------------End Update Weights")
-   
-    return w,d,#wList    
-def train(training_set,w):
-    # print("training_set: \n",training_set)
-    def initVariables():
-        errors = [] 
-        n = .2
-        epoch = 30
-        b = 0
-        iterations = 0
-        wList = []
-        indexWList = -1
-        e = 0
-        return errors, n, epoch, b, iterations, wList, indexWList, e 
-    errors, n, epoch, b, iterations, wList, indexWList, e  = initVariables()
-    # Training
-    for i in range(epoch):
-        iterations=0
-        for x, y in training_set:
-            u = sum(x*w) + b
-            error = y[0] - step_function(u) 
-            iterations+=1                        
-            errors.append(error) 
-            if (error): 
-                w,b = updateWeights(x,w,n,error,b)  
-                weights = w
-                wb = np.append(weights,b) 
-                wList.append(wb)
-                indexWList+=1
-        if (indexWList>1): # Calculate e
-            # print("wList: ", wList)
-            e = wList[indexWList-1] - wList[indexWList-2]
-            print("e: ",e)
-            print ("differnce distance",e[0]**2 + e[1]**2 + e[2]**2)
-    print("InexWList: ", indexWList)
-    for wd in wList:
-        print("wd: ", wd )
-    def printTrainValues():
-        print("---------------------------") 
-        print(" Training Function values: \n")
-        print("training_set: \n",training_set)
-        print("iterations: ", iterations)
-        print("u :", u)
-        print("step_function :", step_function(u))
-        print("eo[0] :", eo)
-        print("error :", error)
-        print("w \n",w)
-        print("d \n",d)
-        print("---------------------------")
-    # printTrainValues() 
-    return w,b        
-# 3D---------------------------------------------------------------------------------
-def train3D(training_set,w):
-    def initVariables():
-        errors = [] 
-        n = .1
-        epoch = 1015
-        d = 0
-        iterations = 0
-        return errors, n, epoch, d, iterations
-    errors, n, epoch, d, iterations = initVariables()
-    # Training
-    for i in range(epoch):
-        for x, eo in training_set:
-            u = sum(x*w) + d
-            error = eo[0] - step_function(u) 
-            iterations+=1                        
-            if (error): 
-                w,d=    updateWeights(x,w,n,error,d)
-    def print3DTrainValues():
-        print("---------------------------") 
-        print(" Training Function values: \n")
-        print("training_set: \n",training_set)
-        print("iterations: ", iterations)
-        print("u :", u)
-        print("step_function :", step_function(u))
-        print("eo[0] :", eo)
-        print("error :", error)
-        print("w \n",w)
-        print("d \n",d)
-        print("---------------------------")
-    print3DTrainValues() 
-    return w,d        
-
-    # x1,x2,x3,y = initTrainingVariables(training_set)
-
-# class Perceptron: #https://gist.github.com/vgoklani/1271153/fc04bb0b79f6abc20cba65eacb4e2e85563c3359
-#     def response(x,w):
-#         return  
-#     def train():
-#         """
-# 		Every vector in data must have three elements, the third element (x[2]) must be the label
-# 		"""
-#         learned = False
-#         iteration = 0
-#         while not learned:
-#             globalError = 0.0
-#             for x in data:
-#                r = self.response(x)    
-#                if x[2] != r:
-#                    iterError = x[2] - r
-#                    self.updateWeights(x,iterError)
-#                    globalError += abs(iterError)
-#                iteration += 1
-#                if globalError == 0.0 or iteration >= 100:
-#                    print ('iterations'),iteration
-#                    learned = True
-
-
 # functions---------------------------------------------------------
 # fi function
 def frequency(data, bins):

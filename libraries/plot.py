@@ -2,18 +2,11 @@ from statistics import variance
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 import numpy as np
-from libraries.loaddata import loadPlotData, load3DPlotData 
+from libraries.load import load_feats_values, load3DPlotData 
+# 2D------------------------------------------------------------------
 # Plot
-  # Data Points  
-def plotdata(x1,y1,x2,y2):
-  plt.scatter(x1,y1)
-  plt.scatter(x2,y2)
-  # Decision Boundary
-def plotDecisionBoundary(slope,intercept,start,end):
-  x = np.linspace(start,end,100)
-  y=slope*x + intercept # ALT w[2]*x2 = w[1]*x1+w[0]
-  plt.plot(x, y)
-  # Graphics Details  
+  # Graphics Details : Define font, x,y axis labels, title etc.   
+def graph_details(): 
   font = {'family': 'serif',
           'color':  'darkred',
           'weight': 'normal',
@@ -22,17 +15,28 @@ def plotDecisionBoundary(slope,intercept,start,end):
   plt.xlabel('X',fontdict=font)
   plt.ylabel('Y',fontdict=font)
   plt.title('--> Dataset2D <--',fontdict=font)
-  # Trained Data
-def plotTrainedData(tablename, w):
+  # Data Points : Plots feature values
+def plot_data(x1,y1,x2,y2):
+  plt.scatter(x1,y1)
+  plt.scatter(x2,y2)
+  # Decision Boundary : Plots a line  
+def plot_decision_boundary(slope,intercept,start,end):
+  # graph_details()
+  x = np.linspace(start,end,100)
+  y= slope*x + intercept # ALT w[2]*x2 = w[1]*x1+w[0]
+  plt.plot(x, y)
+  # Trained Data : Plots feature values and decision boundary
+def plot_trained_data(tablename, weights, bias):
   # data
-  x1,y1,x2,y2 = loadPlotData(tablename=tablename)
-  plotdata(x1,y1,x2,y2)
-    #line
-  b = 1
-  a = [0,-b/w[1]]
-  c = [-b/w[0],0]
-  plt.plot(a,c)
+  c1_x1, c1_x2, c2_x1, c2_x2 = load_feats_values(tablename=tablename) # -> libraries.load.py
+    # Decision boundary
+  slope = -weights[0]/weights[1]
+  intercept = -bias / weights[1]
+  plot_decision_boundary(slope=slope, intercept=intercept,start=0,end=1.5)
+  plot_data(c1_x1, c1_x2, c2_x1, c2_x2)
+  graph_details()
   plt.show()
+
 # 3D------------------------------------------------------------------
 # Plot
   # Data Points  
@@ -128,7 +132,7 @@ def plotPlane():
 #   # Trained Data
 # def plot3DTrainedData(tablename, w):
 #   # data
-#   x1,y1,z1,x2,y2,z2 = load3DPlotData(tablename=tablename)
+#   x1,y1,z1,x2,y2,z2 = load3Dplot_data(tablename=tablename)
 #   plot3DData(x1,y1,z1,x2,y2,z2)
 #     #line
 #   # b = 1
